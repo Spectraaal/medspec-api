@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @Service
@@ -32,6 +34,22 @@ public class CitaService {
         this.medicoRepository = medicoRepository;
     }
 
+    public Cita crear(Long clinicaId, Long pacienteId, Long medicoId, String inicioStr, String finStr, String motivo) {
+        if (clinicaId == null || pacienteId == null || medicoId == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "clinicaId, pacienteId y medicoId son obligatorios");
+        }
+
+        LocalDateTime inicio = parseFechaHora(inicioStr, "inicio");
+        LocalDateTime fin = parseFechaHora(finStr, "fin");
+
+        Cita cita = new Cita();
+        cita.setInicio(inicio);
+        cita.setFin(fin);
+        cita.setMotivo(motivo);
+
+        return crear(clinicaId, pacienteId, medicoId, cita);
+    }
+
     public Cita crear(Long clinicaId, Long pacienteId, Long medicoId, Cita cita) {
         Clinica clinica = clinicaRepository.findById(clinicaId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Clínica no encontrada"));
@@ -50,7 +68,7 @@ public class CitaService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La fecha/hora de inicio debe ser anterior a fin");
         }
 
-        boolean solapa = citaRepository.existeSolapamiento(medicoId, cita.getInicio(), cita.getFin());
+        boolean solapa = citaRepository.existeSolapamiento(medicoId, null, cita.getInicio(), cita.getFin());
         if (solapa) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "El médico ya tiene una cita en ese rango horario");
         }
@@ -91,5 +109,28 @@ public class CitaService {
     public void eliminar(Long id) {
         Cita cita = obtenerPorId(id);
         citaRepository.delete(cita);
+    }
+
+    private LocalDateTime parseFechaHora(String valor, String campo) {
+        if (valor == null || valor.trim().isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, campo + " es obligatorio");
+        }
+
+        List<DateTimeFormatter> formatos = List.of(
+                DateTimeFormatter.ISO_LOCAL_DATE_TIME,              // 2026-03-03T10:00:00
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"), // 2026-03-03 10:00:00
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")     // 2026-03-03 10:00
+        );
+
+        for (DateTimeFormatter f : formatos) {
+            try {
+                return LocalDateTime.parse(valor.trim(), f);
+            } catch (DateTimeParseException ignored) {}
+        }
+
+        throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "Formato inválido para " + campo + ". Usa 'yyyy-MM-ddTHH:mm:ss' o 'yyyy-MM-dd HH:mm'"
+        );
     }
 }

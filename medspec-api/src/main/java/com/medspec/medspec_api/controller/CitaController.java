@@ -21,18 +21,17 @@ public class CitaController {
     }
 
     @PostMapping
-    public CitaResponseDTO crear(
-            @RequestParam Long clinicaId,
-            @RequestParam Long pacienteId,
-            @RequestParam Long medicoId,
-            @Valid @RequestBody CitaCreateDTO dto
-    ) {
-        Cita cita = new Cita();
-        cita.setInicio(dto.getInicio());
-        cita.setFin(dto.getFin());
-        cita.setMotivo(dto.getMotivo());
-
-        return toDTO(citaService.crear(clinicaId, pacienteId, medicoId, cita));
+    public CitaResponseDTO crear(@Valid @RequestBody CitaCreateDTO dto) {
+        return toDTO(
+                citaService.crear(
+                        dto.getClinicaId(),
+                        dto.getPacienteId(),
+                        dto.getMedicoId(),
+                        dto.getInicio(),
+                        dto.getFin(),
+                        dto.getMotivo()
+                )
+        );
     }
 
     @GetMapping
