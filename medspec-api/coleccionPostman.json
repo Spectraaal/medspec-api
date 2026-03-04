@@ -1,20 +1,20 @@
 {
   "info": {
-    "_postman_id": "4a33f3c1-3b0d-4c30-a5f9-162b88413886",
-    "name": "Api Noticias",
+    "_postman_id": "66e4b44a-8434-47a5-88d2-307fcc85686a",
+    "name": "MedSpec",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "52192558",
-    "_collection_link": "https://go.postman.co/collection/52192558-4a33f3c1-3b0d-4c30-a5f9-162b88413886?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/52192558-66e4b44a-8434-47a5-88d2-307fcc85686a?source=collection_link"
   },
   "item": [
     {
-      "name": "addNoticia",
+      "name": "CrearClinca",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"imagenes\": [\r\n    \"https://picsum.photos/id/101/800/500\",\r\n    \"https://picsum.photos/id/102/800/500\",\r\n    \"https://picsum.photos/id/103/800/500\"\r\n  ],\r\n  \"titulo\": \"Noticia de prueba\",\r\n  \"subtitulo\": \"Subtítulo de prueba\",\r\n  \"seccion\": {\r\n    \"nombre\": \"Tecnología\",\r\n    \"icono\": \"hardware-chip-outline\"\r\n  },\r\n  \"autor\": \"Dani\",\r\n  \"fecha\": \"2026-02-18T10:00:00.000Z\",\r\n  \"contenido\": \"Contenido completo de la noticia\"\r\n}\r\n",
+          "raw": "{\r\n  \"nombre\": \"Clínica Centro\",\r\n  \"direccion\": \"Calle X, 12\",\r\n  \"telefono\": \"600123123\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -22,77 +22,28 @@
           }
         },
         "url": {
-          "raw": "{{baseURL}}",
+          "raw": "http://localhost:8080/api/clinicas",
+          "protocol": "http",
           "host": [
-            "{{baseURL}}"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "getNoticias",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"imagenes\": [\r\n    \"https://picsum.photos/id/101/800/500\",\r\n    \"https://picsum.photos/id/102/800/500\",\r\n    \"https://picsum.photos/id/103/800/500\"\r\n  ],\r\n  \"titulo\": \"Noticia de prueba\",\r\n  \"subtitulo\": \"Subtítulo de prueba\",\r\n  \"seccion\": {\r\n    \"nombre\": \"Tecnología\",\r\n    \"icono\": \"hardware-chip-outline\"\r\n  },\r\n  \"autor\": \"Dani\",\r\n  \"fecha\": \"2026-02-18T10:00:00.000Z\",\r\n  \"contenido\": \"Contenido completo de la noticia\"\r\n}\r\n"
-        },
-        "url": {
-          "raw": "{{baseURL}}",
-          "host": [
-            "{{baseURL}}"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "getNoticiaPorId",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "/api/v2/noticias/noticia/6995bbca2b45de0e363cb46d",
+            "localhost"
+          ],
+          "port": "8080",
           "path": [
             "api",
-            "v2",
-            "noticias",
-            "noticia",
-            "6995bbca2b45de0e363cb46d"
+            "clinicas"
           ]
         }
       },
       "response": []
     },
     {
-      "name": "getSecciones",
+      "name": "CrearPaciente",
       "request": {
-        "method": "GET",
-        "header": []
-      },
-      "response": []
-    },
-    {
-      "name": "getNoticiasPorNombre",
-      "request": {
-        "method": "GET",
-        "header": []
-      },
-      "response": []
-    },
-    {
-      "name": "uptNoticia",
-      "request": {
-        "method": "PUT",
+        "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"imagenes\": [\r\n    \"https://picsum.photos/id/104/800/500\",\r\n    \"https://picsum.photos/id/105/800/500\",\r\n    \"https://picsum.photos/id/106/800/500\"\r\n  ],\r\n  \"titulo\": \"Título actualizado\",\r\n  \"subtitulo\": \"Subtítulo actualizado\",\r\n  \"seccion\": {\r\n    \"nombre\": \"Deportes\",\r\n    \"icono\": \"football-outline\"\r\n  },\r\n  \"autor\": \"Dani\",\r\n  \"fecha\": \"2026-02-18T12:00:00.000Z\",\r\n  \"contenido\": \"Contenido actualizado\"\r\n}\r\n",
+          "raw": "{\r\n  \"nombre\": \"Juan\",\r\n  \"apellidos\": \"Pérez Gómez\",\r\n  \"telefono\": \"600123123\",\r\n  \"fechaNacimiento\": \"2004-05-20\",\r\n  \"documentoId\": \"12345678Z\"\r\n}\r\n",
           "options": {
             "raw": {
               "language": "json"
@@ -100,12 +51,324 @@
           }
         },
         "url": {
-          "raw": "{{baseURL}}/update/1",
+          "raw": "http://localhost:8080/api/pacientes",
+          "protocol": "http",
           "host": [
-            "{{baseURL}}"
+            "localhost"
           ],
+          "port": "8080",
           "path": [
-            "update",
+            "api",
+            "pacientes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CrearMedico",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nombre\": \"Laura\",\r\n  \"apellidos\": \"Martínez\",\r\n  \"numeroColegiado\": \"MED-12345\",\r\n  \"especialidad\": \"Cardiología\",\r\n  \"telefono\": \"600222333\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/medicos?clinicaId=1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "medicos"
+          ],
+          "query": [
+            {
+              "key": "clinicaId",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CrearCita",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"inicio\": \"2026-02-07T10:00:00\",\r\n  \"fin\": \"2026-02-07T10:30:00\",\r\n  \"motivo\": \"Revisión general\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/citas?clinicaId=1&pacienteId=1&medicoId=1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "citas"
+          ],
+          "query": [
+            {
+              "key": "clinicaId",
+              "value": "1"
+            },
+            {
+              "key": "pacienteId",
+              "value": "1"
+            },
+            {
+              "key": "medicoId",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CrearInforme",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/informes?citaId=1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "informes"
+          ],
+          "query": [
+            {
+              "key": "citaId",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "VerClinicas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/clinicas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "clinicas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BuscarClinicasPorNombre",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/clinicas?nombre=centro",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "clinicas"
+          ],
+          "query": [
+            {
+              "key": "nombre",
+              "value": "centro"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "VerPacientes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/pacientes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "pacientes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "VerPacientePorNombre",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/pacientes?nombre=juan",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "pacientes"
+          ],
+          "query": [
+            {
+              "key": "nombre",
+              "value": "juan"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "VerPacientePorApellido",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/pacientes?apellidos=perez",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "pacientes"
+          ],
+          "query": [
+            {
+              "key": "apellidos",
+              "value": "perez"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "VerMedicos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/medicos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "medicos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "VerMedicosPorClinica",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/medicos?clinicaId=1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "medicos"
+          ],
+          "query": [
+            {
+              "key": "clinicaId",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ListarCitas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/citas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "citas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ListarCitasPorPaciente",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/citas/por-paciente/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "citas",
+            "por-paciente",
             "1"
           ]
         }
@@ -113,79 +376,209 @@
       "response": []
     },
     {
-      "name": "ptcNoticia",
-      "request": {
-        "method": "PATCH",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"titulo\": \"Cambio solo el título\",\r\n  \"autor\": \"Nuevo autor\"\r\n}\r\n",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "{{baseURL}}/update/6995bbca2b45de0e363cb46d",
-          "host": [
-            "{{baseURL}}"
-          ],
-          "path": [
-            "update",
-            "6995bbca2b45de0e363cb46d"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "delNoticia",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "{{baseURL}}/delete/6995bbca2b45de0e363cb46d",
-          "host": [
-            "{{baseURL}}"
-          ],
-          "path": [
-            "delete",
-            "6995bbca2b45de0e363cb46d"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "getNoticiasBySeccion",
+      "name": "ListarCitasPorMédico",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "{{baseURL}}/bySeccion?name=Tecnología",
+          "raw": "http://localhost:8080/api/citas/por-medico/1",
+          "protocol": "http",
           "host": [
-            "{{baseURL}}"
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "citas",
+            "por-medico",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "VerInformesPorPaciente",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/informes/por-paciente/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "informes",
+            "por-paciente",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "VerInformesPorMedico",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/informes/por-medico/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "informes",
+            "por-medico",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "VerMedicosPorEspecialidad",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "BorrarPacientePorId",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/pacientes/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "pacientes",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BorrarClinicaPorId",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "DELETE /api/clinicas/1",
+          "host": [
+            "DELETE "
           ],
           "path": [
-            "bySeccion"
+            "api",
+            "clinicas",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BorrarMedicoPorId",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/medicos/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "medicos",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BorrarCitasPorId",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/citas/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "citas",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BorrarInformesPorId",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/informes/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "informes",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CambiarEstado",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/citas/1/estado?estado=CONFIRMADA",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "citas",
+            "1",
+            "estado"
           ],
           "query": [
             {
-              "key": "name",
-              "value": "Tecnología"
+              "key": "estado",
+              "value": "CONFIRMADA"
             }
           ]
         }
       },
       "response": []
-    }
-  ],
-  "variable": [
-    {
-      "key": "baseURL",
-      "value": "",
-      "type": "default"
     }
   ]
 }
